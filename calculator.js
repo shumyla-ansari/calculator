@@ -22,10 +22,22 @@ app.post("/", function(req, res) {
     res.send("The result of the calculation is " + result);
 });
 
+app.get("/bmicalculator", function(req, res) {
+    res.sendFile(__dirname + "/bmiCalculator.html");
+});
 
+app.post("/bmicalculator", function(req, res){
 
-app.listen(3500, function() {
-    console.log("Server is listening on port 3500.")
+    var height = parseFloat(req.body.height);
+    var weight = parseFloat(req.body.weight);
+
+    var bmi = weight / Math.pow(height, 2);
+
+    res.send("Your BMI is " + bmi);
+});
+
+app.listen(3200, function() {
+    console.log("Server is listening on port 3200.")
 });
 
 
